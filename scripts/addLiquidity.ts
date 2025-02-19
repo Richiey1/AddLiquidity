@@ -24,7 +24,7 @@ async function main() {
     // Get contract instances
     const usdc = await ethers.getContractAt("IERC20", usdcAddress);
     const weth = await ethers.getContractAt("IERC20", wethAddress);
-    const uniswapV3 = await ethers.getContractAt("IUniswapV3PositionManager", UniswapV3Address);
+    const uniswapV3 = await ethers.getContractAt("INonfungiblePositionManager", UniswapV3Address);
 
     // Approve Uniswap to spend USDC and WETH
     await usdc.connect(impersonatedSigner).approve(UniswapV3Address, ethers.MaxUint256);
@@ -37,8 +37,8 @@ async function main() {
         token0: usdcAddress,
         token1: wethAddress,
         fee: 3000,
-        tickLower: -887220,
-        tickUpper: 887220,
+        tickLower: -787220,
+        tickUpper: 787220,
         amount0Desired: ethers.parseUnits("500", 6), // 500 USDC
         amount1Desired: ethers.parseUnits("0.5", 18), // 0.5 WETH
         amount0Min: 0,
